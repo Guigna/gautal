@@ -6,6 +6,8 @@
 package gautal.ga;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,9 +21,23 @@ import static org.junit.Assert.*;
  */
 public class GeneticAlgorithmTest {
     
-    GeneticAlgorithm<Integer> ga;
+    GeneticAlgorithm< List<Integer> > ga;
     
     public GeneticAlgorithmTest() {
+        Random r=new Random();
+        
+        int popsize=50;
+        double pcross=0.8;
+        int maxiter=1000;
+        Crossover< ArrayList<Integer> > crossover=new SinglePointCrossover(r);
+        Selection<List<Integer>> selection;
+        Mutation<List<Integer>> mutation;
+        Fitness<List<Integer>> fitness;
+        
+        //GeneticAlgorithm(int popsize, double pcross,
+//			int maxiter, Crossover<T> crossover, Selection<T> selection,
+//			Mutation<T> mutation, Fitness<T> fitness, Random r) {
+        ga = new GeneticAlgorithm<List<Integer>>(popsize, pcross, maxiter, crossover,selection, mutation, fitness, r);
     }
     
    
@@ -78,8 +94,8 @@ public class GeneticAlgorithmTest {
     public void testEvaluation() {
         System.out.println("evaluation");
         GeneticAlgorithm instance = null;
-        ArrayList<Double> expResult = null;
-        ArrayList<Double> result = instance.evaluation();
+        ArrayList<Integer> expResult = null;
+        ArrayList<Integer> result = instance.evaluation();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
