@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Randomly flips the value of one of the genes, assuming that the possible values are 0 or 1.
- * @author castudil
+ * @author César Astudillo <cesar dot astudillo at gmail dot com>
  * @date Apr 18, 2014
  */
 public class BitFlipMutation extends Mutation<ArrayList<Integer>> {

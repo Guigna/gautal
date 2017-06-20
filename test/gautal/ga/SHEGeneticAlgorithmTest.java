@@ -17,27 +17,29 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author castudillo
+ * @author César Astudillo <cesar dot astudillo at gmail dot com>lo
  */
-public class GeneticAlgorithmTest {
+public class SHEGeneticAlgorithmTest {
     
-    GeneticAlgorithm< List<Integer> > ga;
+    GeneticAlgorithm< List<Double> > ga;
     
-    public GeneticAlgorithmTest() {
+    public SHEGeneticAlgorithmTest() {
+        
+        double epsilon=0.01;
         Random r=new Random();
         
         int popsize=50;
         double pcross=0.8;
         int maxiter=1000;
-        Crossover< ArrayList<Integer> > crossover=new SinglePointCrossover(r);
-        Selection<List<Integer>> selection;
-        Mutation<List<Integer>> mutation;
-        Fitness<List<Integer>> fitness;
+        Crossover< List<Double> > crossover=new SHECrossover(r);
+        Selection<List<Double>> selection;
+        Mutation<List<Double>> mutation = new SHEQuantumMutation(r, epsilon);
+        Fitness<List<Double>> fitness;
         
         //GeneticAlgorithm(int popsize, double pcross,
 //			int maxiter, Crossover<T> crossover, Selection<T> selection,
 //			Mutation<T> mutation, Fitness<T> fitness, Random r) {
-        ga = new GeneticAlgorithm<List<Integer>>(popsize, pcross, maxiter, crossover,selection, mutation, fitness, r);
+        ga = new GeneticAlgorithm<List<Double>>(popsize, pcross, maxiter, crossover,selection, mutation, fitness, r);
     }
     
    
@@ -94,8 +96,8 @@ public class GeneticAlgorithmTest {
     public void testEvaluation() {
         System.out.println("evaluation");
         GeneticAlgorithm instance = null;
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.evaluation();
+        ArrayList<Double> expResult = null;
+        ArrayList<Double> result = instance.evaluation();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
